@@ -4,19 +4,24 @@ import { PokeApi } from "../api/pokeApi";
 const store = createStore({
   state: {
     pokemons: [],
+    pokemon: {},
+    loading: false,
   },
   getters: {
-    getNombre(state) {
+    getPokemon(state) {
       return state.nombre;
     },
-    // doneTodos (state) {
-    //   return state.todos.filter(todo => todo.done)
-    // }
   },
   mutations: {
     LOAD_POKEMONS(state, payload) {
       state.pokemons = payload;
+    },
+    LOAD_POKEMON_NAME(state, payload) {
+      state.pokemon = payload;
       console.log(payload);
+    },
+    LOADER(state, payload) {
+      state.loading = payload;
     },
     TOGGLE_FAVORITE(state, pokeName) {
       state.pokemons = state.pokemons.map((pokemon) =>
@@ -24,19 +29,33 @@ const store = createStore({
           ? { ...pokemon, favorite: !pokemon?.favorite }
           : pokemon
       );
-      // state.favorite = !state.favorite;
+      localStorage.setItem("store", JSON.stringify(state.pokemons));
     },
     initialiseStore(state) {
       // Check if the ID exists
       if (localStorage.getItem("store")) {
+        // Replace the state object with the stored item
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
       }
     },
   },
   actions: {
     async fetchPokemons(state) {
-      let data = await PokeApi.getPokemons();
-      data = data.map((pokemon) => ({ ...pokemon, favorite: false }));
-      state.commit("LOAD_POKEMONS", data);
+      const data = JSON.parse(localStorage.getItem("store"));
+      if (!data.pokemons.length) {
+        let b = localStorage.getItem("store");
+        let data = await PokeApi.getPokemons();
+        data = data.map((pokemon) => ({ ...pokemon, favorite: false }));
+        state.commit("LOAD_POKEMONS", data);
+      }
+    },
+    async fetchPokemonDetail(state, name) {
+      state.commit("LOADER", true);
+      let data = await PokeApi.getPokemonByName(name);
+      state.commit("LOAD_POKEMON_NAME", data);
+      state.commit("LOADER", false);
     },
     toggleFav(state, name) {
       state.commit("TOGGLE_FAVORITE", name);

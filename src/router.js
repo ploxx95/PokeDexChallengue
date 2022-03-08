@@ -3,7 +3,16 @@ import Home from "./components/views/Home.vue";
 import { createRouter, createWebHashHistory } from "vue-router";
 const routes = [
   { path: "/", component: Welcome },
-  { path: "/home", component: Home },
+  {
+    path: "/home",
+    component: Home,
+    children: [
+      {
+        path: "favoritos",
+        component: Home,
+      },
+    ],
+  },
   { path: "/favoritos", component: Home },
 ];
 

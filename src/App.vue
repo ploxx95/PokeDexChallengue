@@ -1,13 +1,9 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup
-import {useStore} from 'vuex'
-import { computed } from 'vue';
-import List from './components/List.vue';
-import CardPokemon from './components/CardPokemon.vue';
-import ButtonNav from './components/ButtonNav.vue';
-import InputSearch from './components/InputSearch.vue';
- 
+import { onMounted } from 'vue';
+import store from './components/storage';
+
+onMounted(() => {
+    store.commit('initialiseStore')})
 
 </script>
 
@@ -15,10 +11,7 @@ import InputSearch from './components/InputSearch.vue';
   <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
   <div class="flex flex-col gap-3 " >
 
-  <!-- <InputSearch/>
-  <List/>
-  <ButtonNav >Get started</ButtonNav>
-  <CardPokemon/> -->
+
   </div>
   <router-view></router-view>
 </template>
