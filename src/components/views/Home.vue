@@ -1,5 +1,5 @@
 <script setup>
-import InputSearch from '../InputSearch.vue';
+ 
 import Footer from '../Footer.vue';
 import List from '../List.vue';
 import {useStore} from 'vuex'
@@ -39,21 +39,22 @@ function openModal(name) {
     store.dispatch('fetchPokemonDetail',name)
 }
 
+function resetInput() {
+    searchText.value = ""
+}
+
 </script>
 <template>
 
 <main class="relative h-screen">
-    <div class="px-[30px] pt-9 " >
-        <InputSearch class=" outline-none  h-[50px] w-full rounded-md select-none"
-  placeholder="Search"  v-model="searchText"  @keyup.enter="handleSubmit" />
-  
-        <!-- <input id="inputSearch" class=" outline-none  h-[50px] w-full rounded-md select-none"
-  placeholder="Search"  v-model="searchText"  @keyup.enter="handleSubmit" /> -->
-        <section class="flex flex-col gap-[10px] mt-10">
+    <div class="px-[30px] pt-9 h-5/6 max-w-[570px] m-auto" >
+        <input id="inputSearch" class=" outline-none  h-[50px] w-full rounded-md select-none"
+        placeholder="Search"  v-model="searchText"  @keyup.enter="handleSubmit" />
+        <section class="flex flex-col gap-[10px] mt-10  overflow-y-auto h-full">
             <div v-if="filteredList().length == 0" class="text-center" >
                 <h2 class="text-4xl font-bold font-lato mb-[10px]" >Uh-oh!</h2>
                 <p class="text-xl font-medium font-lato mb-6 " >You look lost on your journey!</p>
-                <button id="primary" @click="searchText = ''" >Go back home</button>
+                <button id="primary" @click="resetInput" >Go back home</button>
             </div>
             <List  @open="openModal(pokemon?.name)" v-for="pokemon in filteredList()" :key="pokemon?.name" :pokemon="pokemon" :toggle="toggleHandler"></List>
         </section>

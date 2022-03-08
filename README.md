@@ -2,6 +2,10 @@
 npm install
 npm run dev
 
+# Tecnologias usadas
+Para esta prueba use Vuex como state managment , intente implementar la mayor parte con Composition Api y script setup. para mejor legibilidad.
+
+
 
 
 # Vue 3 + Vite

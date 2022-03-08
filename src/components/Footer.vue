@@ -9,7 +9,7 @@ import StarIcon from '../assets/icon/StarIcon.vue';
 
 <template>
 <footer id="shadowFooter" class=" bg-white px-[30px] py-[18px] w-full absolute bottom-0">
-    <div id="navContain" class="flex gap-4 md:gap-5 ">
+    <div id="navContain" class="flex gap-4 md:gap-5 max-w-[570px] m-auto ">
         <ButtonNav to="/home"><AllIcon/> All</ButtonNav>
         <ButtonNav to="/favoritos" ><StarIcon/>Favorites</ButtonNav>
     </div>

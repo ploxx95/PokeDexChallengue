@@ -13,8 +13,8 @@ const emit = defineEmits(['close'])
 
 
 <template>
-<div class="min-w-min	">
-    <div id="containerImg" class="relative" >
+<div class=" w-[315px] md:w-[570px]">
+    <div id="containerImg" class="relative " >
         <!-- <img :src="pokemon?.sprites?.other.["official-artwork"].front_default" /> -->
         <img width="180" height="180" :src="pokemon?.sprites?.other?.['official-artwork']?.front_default" />
     <CloseIcon @click="emit('close')" class="absolute right-4 top-4" />
@@ -31,7 +31,7 @@ const emit = defineEmits(['close'])
         <p class="capitalize" ><span>Types :  </span>{{pokemon?.types.map(poke=>poke.type.name).join(", ")}}</p>
         <hr>
 
-    <div class="flex justify-between mt-5">
+    <div class="flex justify-between mt-5 ">
 
         <button  id="primary">Share to my friends</button>   
         <ToggleStar :toggleValue="pokemon" :toggleHandler="toggle" />
