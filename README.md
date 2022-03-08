@@ -5,7 +5,9 @@ npm run dev
 # Tecnologias usadas
 Para esta prueba use Vuex como state managment , intente implementar la mayor parte con Composition Api y script setup. para mejor legibilidad.
 
+La applicacion llama a la api /pokemon solo una vez y luego es guardado constantemente junto con el atributo favorite.
 
+Intente en gran medida usar getters para los states, pero por inconvenientes de hacer el codigo mas largo, decidi usarlo directamente del state.
 
 
 # Vue 3 + Vite

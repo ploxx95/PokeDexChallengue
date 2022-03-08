@@ -26,8 +26,12 @@ const store = createStore({
       state.pokemons = payload;
     },
     LOAD_POKEMON_NAME(state, payload) {
-      state.pokemon = payload;
-      console.log(payload);
+      let pokeFilter = state.pokemons.filter(
+        (poke) => poke.name == payload.name
+      );
+      pokeFilter = JSON.parse(JSON.stringify(pokeFilter));
+      let pokeDetail = { ...payload, favorite: pokeFilter[0].favorite };
+      state.pokemon = pokeDetail;
     },
     LOADER(state, payload) {
       state.loading = payload;

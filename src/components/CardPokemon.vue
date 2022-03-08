@@ -4,10 +4,11 @@ import ToggleStar from './ToggleStar.vue';
 import CloseIcon from '../assets/icon/CloseIcon.vue';
 
 const {pokemon} = defineProps({
-  pokemon: Object,
-  toggle: Function
+    pokemon: Object,
 })
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close']) 
+
+
 
 </script>
 
@@ -22,7 +23,7 @@ const emit = defineEmits(['close'])
 
     <div id="infoCard" class="bg-white px-[30px] pb-5 pt-[10px] ">
  
-        <p class="capitalize" ><span>Name :  </span>{{pokemon?.name}}</p>
+        <p class="capitalize"  ><span>Name :  </span >{{pokemon?.name}}</p>
         <hr>
         <p><span>Weight :  </span>{{pokemon?.weight}}</p>
         <hr>
@@ -33,8 +34,8 @@ const emit = defineEmits(['close'])
 
     <div class="flex justify-between mt-5 ">
 
-        <button  id="primary">Share to my friends</button>   
-        <ToggleStar :toggleValue="pokemon" :toggleHandler="toggle" />
+        <button @click="copyText"  id="primary">Share to my friends</button>   
+        <ToggleStar :toggleValue="pokemon"  />
     </div>
     </div>
 
