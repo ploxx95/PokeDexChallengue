@@ -1,24 +1,29 @@
+
+
+
 <script setup>
-import { ref } from 'vue'
-const isActive = ref(false)
+import { useRoute } from 'vue-router'
+import { ref,computed,defineProps } from 'vue'
 
-
-defineProps({
-  typeButton: String
+const props = defineProps({
+  to: String
 })
+
+const route = useRoute()
+  const isActive = computed(() => route.path === props.to)
 
 </script>
 
 
-
-
-
 <template>
-<button :class="{isActive:isActive}" class="primary font-lato font-bold text-lg" 
-@click="isActive=!isActive"
+ <router-link :to="to" class="link" :class="{ isActive: isActive } ">
+
+<button :class="{isActive:isActive}" class="primary font-lato
+ font-bold text-lg flex justify-center items-center gap-[11px] w-full" 
 >
   <slot/>
 </button>
+  </router-link>
 
 </template>
 
@@ -30,14 +35,15 @@ defineProps({
   padding: 11px 20px;
   border-radius: 60px;
   color:white;
-  border-radius: 60px;
 }
 
 .isActive{
   background-color: #F22539;
+  border-radius: 60px;
 
 }
 
 </style>
+
 
 

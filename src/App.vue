@@ -12,20 +12,21 @@ import InputSearch from './components/InputSearch.vue';
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <div class="flex flex-col gap-3" >
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <div class="flex flex-col gap-3 " >
 
-  <InputSearch/>
+  <!-- <InputSearch/>
   <List/>
   <ButtonNav >Get started</ButtonNav>
-  <CardPokemon/>
+  <CardPokemon/> -->
   </div>
+  <router-view></router-view>
 </template>
 
 <style>
 #app {
  background: rgb(206, 206, 206);
- padding: 5rem;
+ height: 100vh;
 }
 #primary {
   background-color: #F22539;

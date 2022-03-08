@@ -14,10 +14,8 @@ function handleSubmit(){
 </script>
 
 <template>
-<h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
-  <input id="inputSearch" class=" outline-none  h-[50px] w-full rounded-md"
+
+  <input id="inputSearch" class=" outline-none  h-[50px] w-full rounded-md select-none"
   placeholder="Search"  v-model="valueInput"  @keyup.enter="handleSubmit" />
 </template>
 
