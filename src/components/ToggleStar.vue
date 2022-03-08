@@ -5,11 +5,12 @@ import {useStore} from 'vuex'
 const store = useStore()
 
 const {toggleValue,toggleHandler} = defineProps({
-  toggleValue: Boolean,
+  toggleValue: Object,
   toggleHandler:Function
 })
 
 function handleToggle() {
+  console.log("toggleValue : ",toggleValue?.favorite)
   toggleHandler(toggleValue.name)
 }
 

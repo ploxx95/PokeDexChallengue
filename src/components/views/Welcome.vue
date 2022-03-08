@@ -1,8 +1,6 @@
 <script setup>
 
-    function goSearch(params) {
-        $router.push('/home')
-    }
+
 
 </script>
 
@@ -18,7 +16,7 @@
        <router-link
         to="/home"
         >
-        <button id="primary" @click="goSearch" >Get started</button>
+        <button id="primary" >Get started</button>
         </router-link>
     </main>
 </template>

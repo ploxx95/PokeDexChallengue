@@ -11,6 +11,15 @@ const store = createStore({
     getPokemon(state) {
       return state.nombre;
     },
+    filterPokemons(state) {
+      if (state.filter.querys.length > 2) {
+        return (pokemonsFilter = state.pokemons.filter((poke) =>
+          poke.name.toLowerCase().includes(state.filter.querys)
+        ));
+      } else {
+        return state.pokemons;
+      }
+    },
   },
   mutations: {
     LOAD_POKEMONS(state, payload) {
@@ -31,6 +40,7 @@ const store = createStore({
       );
       localStorage.setItem("store", JSON.stringify(state.pokemons));
     },
+
     initialiseStore(state) {
       // Check if the ID exists
       if (localStorage.getItem("store")) {
@@ -53,7 +63,9 @@ const store = createStore({
     },
     async fetchPokemonDetail(state, name) {
       state.commit("LOADER", true);
+
       let data = await PokeApi.getPokemonByName(name);
+
       state.commit("LOAD_POKEMON_NAME", data);
       state.commit("LOADER", false);
     },
